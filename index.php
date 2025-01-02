@@ -1,3 +1,12 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dôme du Tonnerre</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
 <?php
 include("autoLoader.php");
 include("bouton.php");
@@ -40,69 +49,82 @@ if (!isset($_SESSION['compteur_prec2'])) {
     $_SESSION['compteur_prec2'] = 3;
 }
 
-echo "<h1>Bienvenue dans le dôme du tonnerre</h1>";
+echo "<h1 class='text-4xl font-bold text-center mt-8 text-red-900'>Bienvenue dans le dôme du tonnerre</h1>";
 
+echo "<div class='relative h-screen'>";
 if (!$_SESSION['form1_submitted']) {
-echo '<form method="POST" action="traitement1.php">
-        <input type="hidden" name="combattant" value="combattant1">
-        <label for="nom1">Nom :</label>
-        <input type="text" id="nom1" name="nom"><br>
-        <label for="race1">Race :</label>
-        <select id="race1" name="race">
+    echo '<form method="POST" action="traitement1.php" class="absolute top-10 left-10 w-1/4 p-6 bg-gray-800 bg-opacity-50 shadow-md rounded-lg">
+        <input type="hidden" name="combattant1" value="combattant1">
+        
+        <label for="nom1" class="block font-medium text-white">Nom :</label>
+        <input type="text" id="nom1" name="nom" class="w-full mt-2 p-2 border border-gray-300 rounded-md"><br>
+
+        <label for="race1" class="block mt-4 font-medium text-white">Race :</label>
+        <select id="race1" name="race" class="w-full mt-2 p-2 border border-gray-300 rounded-md">
           <option value=""></option>
           <option value="nain">Nain</option>
           <option value="elfe">Elfe</option>
           <option value="homme">Homme</option>
           <option value="orque">Orque</option>
         </select>
-        <label for="classe1">Classe :</label>
-        <select id="classe1" name="classe">
+
+        <label for="classe1" class="block mt-4 font-medium text-white">Classe :</label>
+        <select id="classe1" name="classe" class="w-full mt-2 p-2 border border-gray-300 rounded-md">
           <option value=""></option>
           <option value="guerrier">Guerrier</option>
           <option value="paladin">Paladin</option>
           <option value="voleur">Voleur</option>
         </select>
-        <label for="arme1">Arme :</label>
-        <select id="arme1" name="arme">
+
+        <label for="arme1" class="block mt-4 font-medium text-white">Arme :</label>
+        <select id="arme1" name="arme" class="w-full mt-2 p-2 border border-gray-300 rounded-md">
           <option value=""></option>
           <option value="hache">Hache</option>
           <option value="epee">Épée</option>
           <option value="dagues">Dagues</option>
         </select>
-        <button type="submit">Choisir</button>
+
+        <button type="submit" class="mt-6 w-full bg-red-900 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">Choisir</button>
     </form>';
 }
 
 if (!$_SESSION['form2_submitted']) {
-echo '<form method="POST" action="traitement2.php">
-        <input type="hidden" name="combattant" value="combattant2">
-        <label for="nom2">Nom :</label>
-        <input type="text" id="nom2" name="nom"><br>
-        <label for="race2">Race :</label>
-        <select id="race2" name="race">
+    echo '<form method="POST" action="traitement2.php" class="absolute top-10 right-10 w-1/4 p-6 bg-gray-800 bg-opacity-50 shadow-md rounded-lg">
+        <input type="hidden" name="combattant2" value="combattant2">
+        
+        <label for="nom2" class="block font-medium text-red-900">Nom :</label>
+        <input type="text" id="nom2" name="nom" class="w-full mt-2 p-2 border border-gray-300 rounded-md"><br>
+
+        <label for="race2" class="block mt-4 font-medium text-white">Race :</label>
+        <select id="race2" name="race" class="w-full mt-2 p-2 border border-gray-300 rounded-md">
           <option value=""></option>
           <option value="nain">Nain</option>
           <option value="elfe">Elfe</option>
           <option value="homme">Homme</option>
           <option value="orque">Orque</option>
         </select>
-        <label for="classe2">Classe :</label>
-        <select id="classe2" name="classe">
+
+        <label for="classe2" class="block mt-4 font-medium text-white">Classe :</label>
+        <select id="classe2" name="classe" class="w-full mt-2 p-2 border border-gray-300 rounded-md">
           <option value=""></option>
           <option value="guerrier">Guerrier</option>
           <option value="paladin">Paladin</option>
           <option value="voleur">Voleur</option>
         </select>
-        <label for="arme2">Arme :</label>
-        <select id="arme2" name="arme">
+
+        <label for="arme2" class="block mt-4 font-medium text-white">Arme :</label>
+        <select id="arme2" name="arme" class="w-full mt-2 p-2 border border-gray-300 rounded-md">
           <option value=""></option>
           <option value="hache">Hache</option>
           <option value="epee">Épée</option>
           <option value="dagues">Dagues</option>
         </select>
-        <button type="submit">Choisir</button>
+
+        <button type="submit" class="mt-6 w-full bg-red-900 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">Choisir</button>
     </form>';
 }
+
+echo "</div>";
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['combattant']) && $_POST['combattant'] === 'combattant1') { 
     $_SESSION['form1_submitted'] = true; 
@@ -119,34 +141,137 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['combattant']) && $_PO
 
 if (isset($_SESSION['combattant1'])) {
     $combattant1 = $_SESSION['combattant1'];
-    $combattant1-> cheatCode();
-    echo "<h1>{$combattant1->getName()}</h1>";
-    echo "Race : {$combattant1->getRace()}<br>";
-    echo "Classe : {$combattant1->getClasse()}<br>";
-    echo "Arme : {$combattant1->getArme()}<br>";
-    echo " Force : {$combattant1->getForce()}<br>";
-    echo ($_SESSION['compteur_soin1'])."/3"." PV : {$combattant1->getPv()}"." <meter value={$combattant1->getPv()} max='100' optimum='100' low='25' high='75'></meter>"."<br>";
-    echo ($_SESSION['compteur_agil1'])."/3"." Agilité : {$combattant1->getAgilite()}"." <meter value={$combattant1->getAgilite()} max='100' optimum='100' low='25' high='75'></meter>"."<br>";
-    echo ($_SESSION['compteur_prec1'])."/3"." Précision : {$combattant1->getPrecision()}"." <meter value={$combattant1->getPrecision()} max='100' optimum='100' low='25' high='75'></meter>"."<br>";
+    $combattant1->cheatCode();
+
+    // Récupération des données du combattant
+    $name = $combattant1->getName();
+    $race = $combattant1->getRace();
+    $classe = $combattant1->getClasse();
+    $arme = $combattant1->getArme();
+    $force = $combattant1->getForce();
+    $pv = $combattant1->getPv();
+    $agilite = $combattant1->getAgilite();
+    $precision = $combattant1->getPrecision();
+    $compteurSoin = $_SESSION['compteur_soin1'] . "/3";
+    $compteurAgil = $_SESSION['compteur_agil1'] . "/3";
+    $compteurPrec = $_SESSION['compteur_prec1'] . "/3";
+
+    // Détermination de l'image en fonction de la race
+    $imagePath = '';
+    switch (strtolower($race)) {
+        case 'homme':
+            $imagePath = 'images/homme.jpg';
+            break;
+        case 'nain':
+            $imagePath = 'images/nain.jpg';
+            break;
+        case 'orque':
+            $imagePath = 'images/orque.jpg';
+            break;
+        case 'elfe':
+            $imagePath = 'images/elfe.jpg';
+            break;
+        default:
+            $imagePath = 'images/default.jpg'; // Image par défaut si la race est inconnue
+            break;
+    }
+
+    // Affichage des informations
+    echo "
+        <!-- Conteneur pour les informations -->
+        <div class='absolute top-36 left-36 text-red-900 border border-black w-1/4'>
+            <h1 class='text-xl font-bold ml-4'>$name</h1>
+            <p class='ml-2'>Race : $race</p>
+            <p class='ml-2'>Classe : $classe</p>
+            <p class='ml-2'>Arme : $arme</p>
+            <p class='ml-2'>Force : $force</p>
+            <p class='ml-2'>$compteurSoin PV : $pv 
+                <meter value='$pv' max='100' optimum='100' low='25' high='75' class='w-1/4'></meter>
+            </p>
+            <p class='ml-2'>$compteurAgil Agilité : $agilite 
+                <meter value='$agilite' max='100' optimum='100' low='25' high='75' class='w-1/4'></meter>
+            </p>
+            <p class='ml-2'>$compteurPrec Précision : $precision 
+                <meter value='$precision' max='100' optimum='100' low='25' high='75' class='w-1/4'></meter>
+            </p>
+        </div>
+        
+        <!-- Image de combattant -->
+        <div class='absolute bottom-4 left-36 border border-blue-500 w-1/6'>
+            <img src='$imagePath' alt='Image de $race' class='mt-4 w-auto h-auto rounded shadow-md'>
+        </div>
+    ";    
 }
+
+
 
 if (isset($_SESSION['combattant2'])) {
     $combattant2 = $_SESSION['combattant2'];
-    $combattant2-> cheatCode();
-    echo "<h1>{$combattant2->getName()}</h1>";
-    echo "Race : {$combattant2->getRace()}<br>";
-    echo "Classe : {$combattant2->getClasse()}<br>";
-    echo "Arme : {$combattant2->getArme()}<br>";
-    echo "Force : {$combattant2->getForce()}<br>";
-    echo ($_SESSION['compteur_soin2'])."/3"." PV : {$combattant2->getPv()}"." <meter value={$combattant2->getPv()} max='100' optimum='100' low='25' high='75'></meter>"."<br>";
-    echo ($_SESSION['compteur_agil2'])."/3"." Agilité : {$combattant2->getAgilite()}"." <meter value={$combattant2->getAgilite()} max='100' optimum='100' low='25' high='75'></meter>"."<br>";
-    echo ($_SESSION['compteur_prec2'])."/3"." Précision : {$combattant2->getPrecision()}"." <meter value={$combattant2->getPrecision()} max='100' optimum='100' low='25' high='75'></meter>"."<br>";    
+    $combattant2->cheatCode();
+
+    // Récupération des données du combattant
+    $name = $combattant2->getName();
+    $race = $combattant2->getRace();
+    $classe = $combattant2->getClasse();
+    $arme = $combattant2->getArme();
+    $force = $combattant2->getForce();
+    $pv = $combattant2->getPv();
+    $agilite = $combattant2->getAgilite();
+    $precision = $combattant2->getPrecision();
+    $compteurSoin = $_SESSION['compteur_soin2'] . "/3";
+    $compteurAgil = $_SESSION['compteur_agil2'] . "/3";
+    $compteurPrec = $_SESSION['compteur_prec2'] . "/3";
+
+    // Détermination de l'image en fonction de la race
+    $imagePath = '';
+    switch (strtolower($race)) {
+        case 'homme':
+            $imagePath = 'images/homme.jpg';
+            break;
+        case 'nain':
+            $imagePath = 'images/nain.jpg';
+            break;
+        case 'orque':
+            $imagePath = 'images/orque.jpg';
+            break;
+        case 'elfe':
+            $imagePath = 'images/elfe.jpg';
+            break;
+        default:
+            $imagePath = 'images/default.jpg'; // Image par défaut si la race est inconnue
+            break;
+    }
+
+    // Affichage des informations
+    echo "
+        <div class='absolute top-36 right-36 text-red-900 border border-black w-1/4'>
+            <h1 class='text-xl font-bold mr-4'>$name</h1>
+            <p class='mr-2'>Race : $race</p>
+            <p class='mr-2'>Classe : $classe</p>
+            <p class='mr-2'>Arme : $arme</p>
+            <p class='mr-2'>Force : $force</p>
+            <p class='mr-2'>$compteurSoin PV : $pv 
+                <meter value='$pv' max='100' optimum='100' low='25' high='75' class='1/4'></meter>
+            </p>
+            <p class='mr-2'>$compteurAgil Agilité : $agilite 
+                <meter value='$agilite' max='100' optimum='100' low='25' high='75' class='1/4'></meter>
+            </p>
+            <p class='mr-2'>$compteurPrec Précision : $precision 
+                <meter value='$precision' max='100' optimum='100' low='25' high='75' class='1/4'></meter>
+            </p>
+        </div>
+         <div class='absolute bottom-4 right-36 border border-blue-500 w-1/6'>
+            <img src='$imagePath' alt='Image de $race' class='mt-4 w-auto h-auto rounded shadow-md'>
+        </div>
+    ";
 }
 
+
 if ($_SESSION['form1_submitted'] && $_SESSION['form2_submitted'] && !$_SESSION['combat_commence']) {
-    echo '<form method="POST">';
-    echo creerBouton("Démarrer le combat", "debut_combat", "start", "btn-class", "start_combat");
+    echo '<form method="POST" class="absolute top-1/4 left-1/2 transform -translate-x-1/2">';
+    echo creerBouton("Démarrer le combat", "debut_combat", "start", "bg-red-900 text-white font-bold py-2 px-4 rounded hover:bg-red-800 focus:outline-none focus:ring-2 focus:ring-red-700 focus:ring-offset-2", "start_combat");
     echo '</form>';
+    
     if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['debut_combat'])) {
         $_SESSION['combat_commence'] = true;
         header("Location: " . $_SERVER['PHP_SELF']); 
@@ -155,23 +280,28 @@ if ($_SESSION['form1_submitted'] && $_SESSION['form2_submitted'] && !$_SESSION['
 }
 
 if ($_SESSION['combat_commence']) {
-    echo "<h2>{$combattant1->getName()} VS {$combattant2->getName()}</h2>";
+   
+    echo "<h2 class='absolute top-44 left-1/2 transform -translate-x-1/2'>{$combattant1->getName()} VS {$combattant2->getName()}</h2>";
     if ($_SESSION['tour_actuel'] === 1) {
-        echo "<h3>{$combattant1->getName()}, choisissez une action :</h3>";
+        echo "<div class='absolute bottom-52 left-1/3'>";
+        echo "<h3>Choisissez une action :</h3>";
         echo '<form method="POST">';
-        echo creerBouton('Attaquer', 'action1', 'attack1', 'btn-class', 'attaquer');
-        echo creerBouton('Soigner', 'action1', 'heal1', 'btn-class', 'soigner');
-        echo creerBouton('Agilité', 'action1', 'agil1', 'btn-class', 'accelerer');
-        echo creerBouton('Pécision', 'action1', 'pre1', 'btn-class', 'endurer');
+        echo creerBouton('Attaquer', 'action1', 'attack1', "bg-red-900 text-white font-bold py-2 px-4 rounded hover:bg-red-800 focus:outline-none focus:ring-2 focus:ring-red-700 focus:ring-offset-2", 'attaquer');
+        echo creerBouton('Soigner', 'action1', 'heal1', "bg-red-900 text-white font-bold py-2 px-4 rounded hover:bg-red-800 focus:outline-none focus:ring-2 focus:ring-red-700 focus:ring-offset-2", 'soigner');
+        echo creerBouton('Agilité', 'action1', 'agil1', "bg-red-900 text-white font-bold py-2 px-4 rounded hover:bg-red-800 focus:outline-none focus:ring-2 focus:ring-red-700 focus:ring-offset-2", 'accelerer');
+        echo creerBouton('Pécision', 'action1', 'pre1', "bg-red-900 text-white font-bold py-2 px-4 rounded hover:bg-red-800 focus:outline-none focus:ring-2 focus:ring-red-700 focus:ring-offset-2", 'endurer');
         echo '</form>';
+        echo "</div>";
     } elseif ($_SESSION['tour_actuel'] === 2) {
-        echo "<h3>{$combattant2->getName()}, choisissez une action :</h3>";
+        echo "<div class='absolute bottom-52 right-1/4'>";
+        echo "<h3>Choisissez une action :</h3>";
         echo '<form method="POST">';
-        echo creerBouton('Attaquer', 'action2', 'attack2', 'btn-class', 'attaquer');
-        echo creerBouton('Soigner', 'action2', 'heal2', 'btn-class', 'soigner');
-        echo creerBouton('Agilité', 'action2', 'agil2', 'btn-class', 'accelerer');
-        echo creerBouton('Pécision', 'action2', 'pre2', 'btn-class', 'endurer');
+        echo creerBouton('Attaquer', 'action2', 'attack2',"bg-red-900 text-white font-bold py-2 px-4 rounded hover:bg-red-800 focus:outline-none focus:ring-2 focus:ring-red-700 focus:ring-offset-2", 'attaquer');
+        echo creerBouton('Soigner', 'action2', 'heal2',"bg-red-900 text-white font-bold py-2 px-4 rounded hover:bg-red-800 focus:outline-none focus:ring-2 focus:ring-red-700 focus:ring-offset-2", 'soigner');
+        echo creerBouton('Agilité', 'action2', 'agil2',"bg-red-900 text-white font-bold py-2 px-4 rounded hover:bg-red-800 focus:outline-none focus:ring-2 focus:ring-red-700 focus:ring-offset-2", 'accelerer');
+        echo creerBouton('Pécision', 'action2', 'pre2',"bg-red-900 text-white font-bold py-2 px-4 rounded hover:bg-red-800 focus:outline-none focus:ring-2 focus:ring-red-700 focus:ring-offset-2", 'endurer');
         echo '</form>';
+        echo "</div>";
     }
 }
 
@@ -185,12 +315,12 @@ function combattre($combattant1, $combattant2, &$tourActuel) {
 
                 echo "{$combattant2->getName()} est mort !<br>";
                 session_destroy();
-                echo creerBouton("Fin Combat", "fin combat", "fin combat", "btn-class", "fin combat");
+                echo creerBouton("Fin Combat", "fin combat", "fin combat", "bg-red-900 text-white font-bold py-2 px-4 rounded hover:bg-red-800 focus:outline-none focus:ring-2 focus:ring-red-700 focus:ring-offset-2","fin combat");
                 return;
             }
 
             echo '<form method="POST">';
-            echo '<button type="submit" name="next_turn" class="btn-class">Passer au tour suivant</button>';
+            echo '<button type="submit" name="next_turn" class="bg-red-900 text-white font-bold py-2 px-4 rounded hover:bg-red-800 focus:outline-none focus:ring-2 focus:ring-red-700 focus:ring-offset-2">Passer au tour suivant</button>';
             echo '</form>';
     
     
@@ -203,12 +333,12 @@ function combattre($combattant1, $combattant2, &$tourActuel) {
 
                 echo "{$combattant1->getName()} est mort !<br>";
                 session_destroy();
-                echo creerBouton("Fin Combat", "fin combat", "fin combat", "btn-class", "fin combat");
+                echo creerBouton("Fin Combat", "fin combat", "fin combat", "bg-red-900 text-white font-bold py-2 px-4 rounded hover:bg-red-800 focus:outline-none focus:ring-2 focus:ring-red-700 focus:ring-offset-2", "fin combat");
                 return;
             }
 
             echo '<form method="POST">';
-            echo '<button type="submit" name="next_turn" class="btn-class">Passer au tour suivant</button>';
+            echo '<button type="submit" name="next_turn" class="bg-red-900 text-white font-bold py-2 px-4 rounded hover:bg-red-800 focus:outline-none focus:ring-2 focus:ring-red-700 focus:ring-offset-2">Passer au tour suivant</button>';
             echo '</form>';    
     
             $_SESSION['tour_actuel'] = 1;
@@ -261,11 +391,6 @@ function actionComb1($combattant1, $combattant2, $action1) {
             }else {
             echo "{$combattant1->getName}, Vous n'avez plus de potions de précision";
             }
-            break;
-    
-        case 'mage':
-            $combattant1->setMana($combattant1->getMana() + 50);
-            echo "{$combattant1->getName()} gagne 50 de mana.<br>";
             break;
     
         default:
@@ -327,11 +452,6 @@ function actionComb1($combattant1, $combattant2, $action1) {
             }
             break;
     
-        case 'mage':
-            $combattant2->setMana($combattant2->getMana() + 50);
-            echo "{$combattant2->getName()} gagne 50 de mana.<br>";
-            break;
-    
         default:
             echo "{$combattant2->getName()} n'a pas choisi une action valide.<br>";
             break;
@@ -345,3 +465,5 @@ function actionComb1($combattant1, $combattant2, $action1) {
 combattre($combattant1 ?? null, $combattant2 ?? null, $_SESSION['tour_actuel']);
 
 ?>
+</body>
+</html>
