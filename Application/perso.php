@@ -1,21 +1,42 @@
 <?php
 
+/**
+ * @abstract
+ * @brief Classe abstraite représentant un personnage
+ */
 abstract class Perso {
-    
-    protected string $name;
-    protected string $race;
-    protected string $classe;
-    protected string $arme;
-    protected int $Pv;
-    protected int $endurance;
-    protected int $force;
-    protected bool $enVie;
-    protected int $mana;
-    protected int $magie;
-    protected int $vitesse;
-    protected int $precision;
-    protected int $agilite;
 
+    // Déclaration des propriétés de la classe
+    protected string $name;       // Nom du personnage
+    protected string $race;       // Race du personnage
+    protected string $classe;     // Classe du personnage
+    protected string $arme;       // Arme équipée par le personnage
+    protected int $Pv;            // Points de vie du personnage
+    protected int $endurance;     // Endurance du personnage
+    protected int $force;         // Force du personnage
+    protected bool $enVie;        // Statut de vie du personnage
+    protected int $mana;          // Mana du personnage
+    protected int $magie;         // Magie du personnage
+    protected int $vitesse;       // Vitesse du personnage
+    protected int $precision;     // Précision du personnage
+    protected int $agilite;       // Agilité du personnage
+
+    /**
+     * @brief Constructeur de la classe Perso
+     * @param string $name Nom du personnage
+     * @param int $Pv Points de vie du personnage
+     * @param int $endurance Endurance du personnage
+     * @param int $force Force du personnage
+     * @param bool $enVie Statut de vie du personnage
+     * @param int $mana Mana du personnage
+     * @param int $magie Magie du personnage
+     * @param int $vitesse Vitesse du personnage
+     * @param int $precision Précision du personnage
+     * @param int $agilite Agilité du personnage
+     * @param string $race Race du personnage
+     * @param string $classe Classe du personnage
+     * @param string $arme Arme équipée par le personnage
+     */
     public function __construct($name, $Pv, $endurance, $force, $enVie, $mana, $magie, $vitesse, $precision, $agilite, $race, $classe, $arme) {
         $this->name = $name;    
         $this->Pv = $Pv;
@@ -32,94 +53,183 @@ abstract class Perso {
         $this->arme = $arme;
     }
 
-    public function setName ($name) {
+    /**
+     * @brief Définit le nom du personnage
+     * @param string $name Le nom du personnage
+     */
+    public function setName($name) {
         $this->name = $name;
     }
 
-    public function getName () {
-       return $this->name;
+    /**
+     * @brief Obtient le nom du personnage
+     * @return string Le nom du personnage
+     */
+    public function getName() {
+        return $this->name;
     }
 
-    public function setPv ($Pv) {
+    /**
+     * @brief Définit les points de vie du personnage
+     * @param int $Pv Les points de vie du personnage
+     */
+    public function setPv($Pv) {
         $this->Pv = $Pv;
     }
 
-    public function getPv () {
-       return $this->Pv;
+    /**
+     * @brief Obtient les points de vie du personnage
+     * @return int Les points de vie du personnage
+     */
+    public function getPv() {
+        return $this->Pv;
     }
 
-    public function setEndurance ($endurance) {
+    /**
+     * @brief Définit l'endurance du personnage
+     * @param int $endurance L'endurance du personnage
+     */
+    public function setEndurance($endurance) {
         $this->endurance = $endurance;
     }
 
-    public function getEndurance () {
-       return $this->endurance;
+    /**
+     * @brief Obtient l'endurance du personnage
+     * @return int L'endurance du personnage
+     */
+    public function getEndurance() {
+        return $this->endurance;
     }
 
-    public function setForce ($force) {
+    /**
+     * @brief Définit la force du personnage
+     * @param int $force La force du personnage
+     */
+    public function setForce($force) {
         $this->force = $force;
     }
 
-    public function getForce () {
-       return $this->force;
+    /**
+     * @brief Obtient la force du personnage
+     * @return int La force du personnage
+     */
+    public function getForce() {
+        return $this->force;
     }
 
-    public function setEnVie ($enVie) {
+    /**
+     * @brief Définit l'état de vie du personnage
+     * @param bool $enVie L'état de vie du personnage (true si vivant, false si mort)
+     */
+    public function setEnVie($enVie) {
         $this->enVie = $enVie;
     }
 
-    public function getEnVie () {
+    /**
+     * @brief Obtient l'état de vie du personnage
+     * @return bool L'état de vie du personnage
+     */
+    public function getEnVie() {
         return $this->enVie;
-     }  
-     
+    }
 
-    public function setMana ($mana) {
+    /**
+     * @brief Définit le mana du personnage
+     * @param int $mana Le mana du personnage
+     */
+    public function setMana($mana) {
         $this->mana = $mana;
     }
 
-    public function getMana () {
-       return $this->mana;
+    /**
+     * @brief Obtient le mana du personnage
+     * @return int Le mana du personnage
+     */
+    public function getMana() {
+        return $this->mana;
     }
 
-    public function setMagie ($magie) {
+    /**
+     * @brief Définit la magie du personnage
+     * @param int $magie La magie du personnage
+     */
+    public function setMagie($magie) {
         $this->magie = $magie;
     }
 
-    public function getMagie () {
-       return $this->magie;
+    /**
+     * @brief Obtient la magie du personnage
+     * @return int La magie du personnage
+     */
+    public function getMagie() {
+        return $this->magie;
     }
 
-    public function setVitesse ($vitesse) {
+    /**
+     * @brief Définit la vitesse du personnage
+     * @param int $vitesse La vitesse du personnage
+     */
+    public function setVitesse($vitesse) {
         $this->vitesse = $vitesse;
     }
 
-    public function getVitesse () {
-       return $this->vitesse;
+    /**
+     * @brief Obtient la vitesse du personnage
+     * @return int La vitesse du personnage
+     */
+    public function getVitesse() {
+        return $this->vitesse;
     }
 
-    public function setPrecision ($precision) {
+    /**
+     * @brief Définit la précision du personnage
+     * @param int $precision La précision du personnage
+     */
+    public function setPrecision($precision) {
         $this->precision = $precision;
     }
 
-    public function getPrecision () {
-       return $this->precision;
+    /**
+     * @brief Obtient la précision du personnage
+     * @return int La précision du personnage
+     */
+    public function getPrecision() {
+        return $this->precision;
     }
 
-    public function setAgilite ($agilite) {
+    /**
+     * @brief Définit l'agilité du personnage
+     * @param int $agilite L'agilité du personnage
+     */
+    public function setAgilite($agilite) {
         $this->agilite = $agilite;
     }
 
-    public function getAgilite () {
-       return $this->agilite;
+    /**
+     * @brief Obtient l'agilité du personnage
+     * @return int L'agilité du personnage
+     */
+    public function getAgilite() {
+        return $this->agilite;
     }
 
-    public function attaquer () {}
+    /**
+     * @brief Fonction d'attaque du personnage
+     * @details Cette fonction peut être implémentée dans les classes dérivées
+     */
+    public function attaquer() {}
 
-    public function defendre () {}
+    /**
+     * @brief Fonction de défense du personnage
+     * @details Cette fonction peut être implémentée dans les classes dérivées
+     */
+    public function defendre() {}
 
-    public function deceder () {}
-
-    
-
+    /**
+     * @brief Fonction qui gère la mort du personnage
+     * @details Cette fonction peut être implémentée dans les classes dérivées
+     */
+    public function deceder() {}
 
 }
+?>
